@@ -1,0 +1,68 @@
+<%@ page language="java" pageEncoding="utf-8"%><%@page import="java.util.*" import="java.text.*" import="com.homolo.framework.util.*" import="com.homolo.framework.annotation.*" import="org.springframework.context.*"
+	import="com.homolo.framework.util.UUID" 
+	import="com.homolo.framework.bean.*" 
+	import="com.homolo.framework.dao.util.*"
+	import="com.homolo.framework.rest.*"
+	import="com.homolo.framework.manager.BeanFieldWirer" 
+	import="org.springframework.security.authentication.UsernamePasswordAuthenticationToken"
+	import="org.springframework.security.core.context.SecurityContextHolder"
+	import="com.homolo.framework.web.JspHelper" %><%!/* 定义常用功能函数 Start */
+
+	BeanFieldWirer beanFieldWirer;
+
+	/**
+	 *
+	 * 获得rest服务的路径
+	 */
+	String getEntityActionUrl(Object entity, String action) {
+		return  "/service/rest/" + DomainObjectUtils.getEntityName(entity.getClass()) + "/" + DomainObjectUtils.getPrimaryKeyValue(entity) + "/" + action;
+	}
+
+	String getLocaleMessage(String name) {
+		MessageSource source = MessageUtils.getDefaultMessageSource();
+		if (source != null) {
+			return source.getMessage(name, null, null, Locale.getDefault());
+		} else {
+			return null;
+		}
+	}
+
+
+	public static boolean isAndroid(String agent) {
+		if (agent == null) {
+			return false;
+		}
+		boolean isAndroid = false;
+		String[] keywords = { "Android", "Windows Phone", "MQQBrowser" };
+		if (!agent.contains("Windows NT") || (agent.contains("Windows NT") && agent.contains("compatible; MSIE 9.0;"))) {
+			if (!agent.contains("Windows NT") && !agent.contains("Macintosh")) {
+				for (String str : keywords) {
+					if (agent.contains(str)) {
+						isAndroid = true;
+						break;
+					}
+				}
+			}
+		}
+		return isAndroid;
+	}
+
+	public static boolean isIos(String agent) {
+		if (agent == null) {
+			return false;
+		}
+		boolean isAndroid = false;
+		String[] keywords = { "iPhone", "iPod", "iPad" };
+		if (!agent.contains("Windows NT") || (agent.contains("Windows NT") && agent.contains("compatible; MSIE 9.0;"))) {
+			if (!agent.contains("Windows NT") && !agent.contains("Macintosh")) {
+				for (String str : keywords) {
+					if (agent.contains(str)) {
+						isAndroid = true;
+						break;
+					}
+				}
+			}
+		}
+		return isAndroid;
+	}
+%>

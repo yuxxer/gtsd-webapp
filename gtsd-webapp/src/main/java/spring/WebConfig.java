@@ -20,9 +20,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.MutablePropertySources;
 
 import com.homolo.framework.bean.DynamicBeanFactory;
-import com.homolo.framework.cache.CacheFactory;
-import com.homolo.framework.cache.CacheFactoryFactory;
-import com.homolo.framework.cache.MapCacheFactoryImpl;
 import com.homolo.framework.cluster.Global;
 import com.homolo.framework.cluster.Standalone;
 import com.homolo.framework.dao.mongo.GlobalSynchronizer;
@@ -39,6 +36,7 @@ import com.homolo.framework.util.MessageUtils;
 	com.homolo.framework.protocol.BeanConfig.class, 
 	com.homolo.framework.rest.BeanConfig.class,
 	/*** import self configs ***/
+	com.yuxxer.gtsd.usersystem.HibernateProjectConfig.class,
 	com.yuxxer.gtsd.ProjectConfig.class
 	})
 public class WebConfig {
@@ -53,20 +51,20 @@ public class WebConfig {
 		return new WebApplication();
 	}
 
-	@Bean(name = "global.cacheFactory")
-	CacheFactory globalCacheFactory() {
-		return new MapCacheFactoryImpl();
-	}
-	
-	@Bean(name = "local.cacheFactory")
-	CacheFactory localCacheFactory() {
-		return new MapCacheFactoryImpl();
-	}
-	
-	@Bean
-	CacheFactoryFactory cacheFactoryFactory() {
-		return new CacheFactoryFactory();
-	}
+//	@Bean(name = "global.cacheFactory")
+//	CacheFactory globalCacheFactory() {
+//		return new MapCacheFactoryImpl();
+//	}
+//	
+//	@Bean(name = "local.cacheFactory")
+//	CacheFactory localCacheFactory() {
+//		return new MapCacheFactoryImpl();
+//	}
+//	
+//	@Bean
+//	CacheFactoryFactory cacheFactoryFactory() {
+//		return new CacheFactoryFactory();
+//	}
 	
 	@Bean
 	ModuleRegistry moduleRegistry() {
@@ -115,6 +113,7 @@ public class WebConfig {
 //			}
 //		}
 		packageNames.add("com.yuxxer.gtsd.domain");
+		packageNames.add("com.yuxxer.gtsd.usersystem.domain");
 		return packageNames;
 	}
 	

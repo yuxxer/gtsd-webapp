@@ -1,29 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<global-method-security pre-post-annotations="enabled">
-		<!-- AspectJ pointcut expression that locates our "post" method and applies security that way <protect-pointcut expression="execution(* bigbank.*Service.post*(..))" access="ROLE_TELLER"/> -->
+		<!-- AspectJ pointcut expression that locates our "post" method and applies 
+			security that way <protect-pointcut expression="execution(* bigbank.*Service.post*(..))" 
+			access="ROLE_TELLER"/> -->
 	</global-method-security>
 
 	<http auto-config="true" use-expressions="true">
-		<intercept-url pattern="/**" access="permitAll" />
-		<intercept-url pattern="/admin/login*" access="permitAll" />
-		<intercept-url pattern="/admin/logout*" access="permitAll" />
-		<intercept-url pattern="/admin/timeout*" access="permitAll" />
-		<form-login login-page="/admin/login.jsp" default-target-url="/admin/login.jsp?result=true" authentication-failure-url="/admin/login.jsp?result=false" />
-		<logout logout-success-url="/admin/logout.jsp" invalidate-session="true" />
-		<remember-me key="gtsd" />
-
+		<intercept-url pattern="/admin/**" access="isAuthenticated()" />
+		<intercept-url pattern="/**" access="permitAll()" />
+		<!--<intercept-url 
+			pattern="/workbench1**" access="isAuthenticated()" /> --><!-- 
+			Disable web URI authorization, as we're using <global-method-security> and 
+			have @Secured the services layer instead <intercept-url pattern="/listAccounts.html" 
+			access="isRememberMe()" /> <intercept-url pattern="/post.html" access="hasRole('ROLE_TELLER')" 
+			/> -->
+		<form-login login-page="/login.jsp"
+			default-target-url="/login.jsp?$=success"
+			authentication-failure-url="/login.jsp?$=deny"
+			always-use-default-target="true" authentication-details-source-ref="webAuthenticationDetailsSource" />
+		<logout success-handler-ref="userLogoutSuccessHandler"
+			invalidate-session="true" logout-url="/logout" />
+		<remember-me key="homolo" />
+		<!-- Uncomment to limit the number of sessions a user can have -->
+		<!-- <session-management invalid-session-url="/admin/timeout.jsp">
+			<concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="true" />
+		</session-management> -->
 	</http>
 	
-	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="username" password="password" authorities="ROLE_USER" />
-			</user-service>
+	<beans:bean id="webAuthenticationDetailsSource"
+		class="com.yuxxer.gtsd.usersystem.security.ProxyWebAuthenticationDetailsSource" />
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="daoAuthenticationProvider">
 		</authentication-provider>
 	</authentication-manager>
+
+	<beans:bean id="daoAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<beans:property name="passwordEncoder" ref="gtsd.passwordEncoder" />
+		<beans:property name="hideUserNotFoundExceptions"
+			value="false" />
+		<beans:property name="userDetailsService" ref="userDetailsService" />
+	</beans:bean>
+
+	<beans:bean id="userDetailsService"
+		class="com.yuxxer.gtsd.usersystem.security.BasedAccountUserProvider">
+		<beans:property name="userGroupRoleProvider">
+			<beans:bean class="com.yuxxer.gtsd.usersystem.security.UserProvider" />
+		</beans:property>
+	</beans:bean>
+	<beans:bean id="userLogoutSuccessHandler"
+		class="com.yuxxer.gtsd.usersystem.security.UserLogoutSuccessHandler">
+		<beans:property name="defaultTargetUrl" value="/admin/login.jsp" />
+		<beans:property name="targetUrlParameter" value="return" />
+	</beans:bean>
 
 </beans:beans>

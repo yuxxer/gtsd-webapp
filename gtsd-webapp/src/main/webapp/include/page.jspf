@@ -1,0 +1,39 @@
+<%@ page 
+	language="java" 
+	pageEncoding="UTF-8"
+%><%@page 
+	import="com.homolo.framework.rest.RestContext"
+	import="com.homolo.framework.security.AuthenticatedUser"
+    import="com.homolo.framework.web.JspHelper"
+    import="org.springframework.security.core.context.SecurityContextHolder"
+	import="org.springframework.security.authentication.UsernamePasswordAuthenticationToken"
+	import="com.yuxxer.gtsd.usersystem.security.UserSessionFactory"
+    import="com.yuxxer.gtsd.usersystem.manager.UserManager"
+	import="com.yuxxer.gtsd.usersystem.security.ProxyWebAuthenticationDetails"
+	import="com.yuxxer.gtsd.usersystem.security.UserDetailAdapter"
+	import="com.yuxxer.gtsd.usersystem.security.UserAdapter"
+%><%@ include file="definition.jspf"%><%@ include file="functions.jspf"%><%!
+
+
+/* 定义常用功能函数 End */
+void refreshSpringSecurityContext(String personId, JspHelper helper, HttpServletRequest request) {
+	UserManager userSystemManager = helper.getBean(UserManager.class);
+	com.yuxxer.gtsd.usersystem.domain.User user = userSystemManager.getUserByPersonId(personId);
+	if (user != null) {
+		UserAdapter userAdapter = new UserAdapter(user);
+		UserDetailAdapter userDetailAdapter = new UserDetailAdapter(userAdapter);
+		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetailAdapter, userDetailAdapter.getPassword(), userDetailAdapter.getAuthorities());
+		authentication.setDetails(new ProxyWebAuthenticationDetails(request));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+	}
+}
+
+%><%
+if (beanFieldWirer == null) {
+	beanFieldWirer = helper.getBean(BeanFieldWirer.class);
+}
+
+RestContext ctx = (RestContext) request.getAttribute("context");
+
+AuthenticatedUser $user = UserSessionFactory.currentUser();
+%>

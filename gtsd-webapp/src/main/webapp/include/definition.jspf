@@ -1,0 +1,11 @@
+<%@ page 
+	language="java" 
+	pageEncoding="UTF-8"
+%><%@ page import="java.util.*" import="org.apache.commons.lang3.StringUtils" import="com.homolo.framework.web.*" import="com.homolo.framework.util.*"%><%
+	// Create a jsp helper instance.
+
+	JspHelper helper = new JspHelper(pageContext, "utf-8");
+
+	String $restRoot = request.getContextPath() + "/service/rest";
+
+%>
