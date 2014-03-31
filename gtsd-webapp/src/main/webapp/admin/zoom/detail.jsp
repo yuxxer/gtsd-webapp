@@ -66,63 +66,17 @@ if (StringUtils.isNotBlank(entityId)) {
 							<div class="clear"></div>
 						</div>
 
-						<!-- <div class="formRow">
+						<div class="formRow">
                         <label>上一级:</label>
                         <div class="formRight">
-                            <select data-placeholder="Your Favorite Football Team" style="" class="chzn-select" multiple="multiple" tabindex="6">
-                                <option value=""></option>
-                                <optgroup label="NFC EAST">
-                                    <option>Dallas Cowboys</option>
-                                    <option selected="selected">New York Giants</option>
-                                    <option>Philadelphia Eagles</option>
-                                    <option>Washington Redskins</option>
-                                </optgroup>
-                                <optgroup label="NFC NORTH">
-                                    <option selected="selected">Chicago Bears</option>
-                                    <option>Detroit Lions</option>
-                                    <option>Green Bay Packers</option>
-                                    <option>Minnesota Vikings</option>
-                                </optgroup>
-                                <optgroup label="NFC SOUTH">
-                                    <option selected="selected">Atlanta Falcons</option>
-                                    <option>Carolina Panthers</option>
-                                    <option>New Orleans Saints</option>
-                                    <option>Tampa Bay Buccaneers</option>
-                                </optgroup>
-                                <optgroup label="NFC WEST">
-                                    <option>Arizona Cardinals</option>
-                                    <option>St. Louis Rams</option>
-                                    <option>San Francisco 49ers</option>
-                                    <option>Seattle Seahawks</option>
-                                </optgroup>
-                                <optgroup label="AFC EAST">
-                                    <option>Buffalo Bills</option>
-                                    <option>Miami Dolphins</option>
-                                    <option>New England Patriots</option>
-                                    <option>New York Jets</option>
-                                </optgroup>
-                                <optgroup label="AFC NORTH">
-                                    <option>Baltimore Ravens</option>
-                                    <option>Cincinnati Bengals</option>
-                                    <option>Cleveland Browns</option>
-                                    <option>Pittsburgh Steelers</option>
-                                </optgroup>
-                                <optgroup label="AFC SOUTH">
-                                    <option>Houston Texans</option>
-                                    <option>Indianapolis Colts</option>
-                                    <option>Jacksonville Jaguars</option>
-                                    <option>Tennessee Titans</option>
-                                </optgroup>
-                                <optgroup label="AFC WEST">
-                                    <option>Denver Broncos</option>
-                                    <option>Kansas City Chiefs</option>
-                                    <option>Oakland Raiders</option>
-                                    <option>San Diego Chargers</option>
-                                </optgroup>
-                            </select>  
+                        	<ul class="ui-selector-list">
+                        	<li class="display">上海市<input type="hidden" value="" />&nbsp;&nbsp; <a href="javascript:void(0);"><i class="icon-remove"></i></a></li>
+                        	</ul>
+                        	<button type="button" id="addQuestion" class="btn btn-mini" onclick="selectZoom($(this).parent().parent());">添加题目</button>
+                            <%-- <a href="javascript:void(0);"id="addZoom" class="smallButton" style="margin: 5px;"><img src="<%=request.getContextPath() %>/images/icons/color/plus.png" title="添加上一级"/></a> --%>  
                         </div>             
                         <div class="clear"></div>
-                    </div> -->
+                    </div>
 						<div class="formRow">
 							<label>描述:</label>
 							<div class="formRight">
@@ -191,6 +145,52 @@ if (StringUtils.isNotBlank(entityId)) {
 			}
 		});
 	}
+	
+	function selectZoom(parent,item){
+		var selectBtn = $('<button type="button" class="btn btn-mini btn-success"><i class="icon-cog icon-white"></i></button>');
+			console.log(selectBtn);
+			 $('<div>').dialog({
+					modal:true,
+					width: 750,
+					title:'题目选择',
+		            close: function(){
+		            	$(this).remove();
+		            },
+		            buttons:{
+		            	'确定':function(){
+		                    var values = new Array();
+		                    $('#table_question').find('input:checked').each(function(index){
+		                    	values.push($(this).val());
+		                    });
+		                    alert(14);
+		                    var value=null;	                    
+		                    var isExist=false;
+		                    for (var i = 0; i < values.length; i++) {
+		                    	if (i > 0) {
+		                    		break;
+		                    	}
+		                    	var ins=$('#questions').find('[name="questionId"]');
+		                    	for(var k=0;k<ins.length;k++){
+		                    		if($(ins[k]).val()==values[i]){
+		                    			alert("題目已选，不可再选！");
+			                   			isExist=true;
+		                   		 	}
+		                   	 	}
+		                    	value=values[i];
+		                    }
+		                    if(value && !isExist){
+		                    	selectBtn.parent().find('span').remove();
+		                    	$('<span><b>' + $('#name_' + value).val() + '</b><input type="hidden" name="questionId" value="' + value + '"/></span>&nbsp;').insertBefore(selectBtn);
+		                    	$(this).dialog("close");
+		                    }
+		                }
+		            },
+		            open:function(){
+		            	$(this).load('selector.jsp?array=false&tableId=table_question');
+		            }
+			}); 
+	};
 	</script>
+	<script type="text/javascript" src="openSelector.js"></script>
 </body>
 </html>

@@ -1,7 +1,12 @@
 <%@ page language="java" pageEncoding="utf-8"%><%@ include file="page.jspf"%>
 <link href="<%=request.getContextPath() %>/css/main.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type='text/javascript' src='<%=request.getContextPath()%>/js/plugins/jquery/jquery.min.js'></script>
+<script type='text/javascript' src='<%=request.getContextPath()%>/js/plugins/jquery/jquery-ui.min.js'></script>
+<script type='text/javascript' src='<%=request.getContextPath()%>/js/plugins/jquery/jquery-ui-timepicker-addon.js'></script>
+<script type='text/javascript' src='<%=request.getContextPath()%>/js/plugins/jquery/jquery.ui.datepicker-zh-CN.js'></script>
+<script type='text/javascript' src='<%=request.getContextPath()%>/js/plugins/jquery/jquery.mousewheel.min.js'></script>
+
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/spinner/ui.spinner.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/spinner/jquery.mousewheel.js"></script>
 

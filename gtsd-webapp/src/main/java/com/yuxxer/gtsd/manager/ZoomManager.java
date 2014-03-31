@@ -72,8 +72,13 @@ public class ZoomManager {
 		zoomDao.deleteAll();
 	}
 	
+	public int count(ZoomCondition condition) {
+		return zoomDao.countByCondition(condition);
+	}
+	
 	public PaginationSupport<Zoom> searchZooms(ZoomCondition condtion,
 			Range range, Sorter sorter) {
 		return zoomDao.findByCondition(condtion, range, sorter);
 	}
+	
 }

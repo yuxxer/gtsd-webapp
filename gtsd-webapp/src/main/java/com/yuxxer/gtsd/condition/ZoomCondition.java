@@ -2,6 +2,7 @@ package com.yuxxer.gtsd.condition;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.homolo.framework.dao.hibernate.HibernateCondition;
@@ -30,7 +31,7 @@ public class ZoomCondition implements HibernateCondition{
 	@Override
 	public void populateDetachedCriteria(DetachedCriteria criteria) {
 		if (StringUtils.isNotBlank(name)) {
-			criteria.add(Restrictions.like("name", name));
+			criteria.add(Restrictions.ilike("name", name, MatchMode.ANYWHERE));
 		}
 		if (StringUtils.isNotBlank(parentId)) {
 			criteria.add(Restrictions.eq("parentId", parentId));
