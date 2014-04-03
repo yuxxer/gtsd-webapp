@@ -20,7 +20,7 @@
 
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/forms/uniform.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/forms/jquery.cleditor.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/forms/jquery.validationEngine-en.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/forms/jquery.validationEngine-zh_CN.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/forms/jquery.validationEngine.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/forms/jquery.tagsinput.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/forms/autogrowtextarea.js"></script>
@@ -57,4 +57,4 @@
 
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/charts/chart.js"></script>
 
-<%-- <script type="text/javascript" src="<%=request.getContextPath() %>/js/custom.js"></script> --%>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/custom.js"></script>

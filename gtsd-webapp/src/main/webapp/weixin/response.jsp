@@ -106,7 +106,7 @@ if (request.getMethod().equalsIgnoreCase("post")) {
 				buffer.append("<CreateTime>"+new Date().getTime()+"</CreateTime>");
 				buffer.append("<MsgType><![CDATA[text]]></MsgType>");
 				buffer.append("<Content>");
-				buffer.append("<![CDATA[1.请照此格式输入【KDCX:运单号】\n2.<a href='http://xieqilin.x7.fjjsp01.com/weixin/search.jsp'>点击此处</a>]]>");
+				buffer.append("<![CDATA[1.请照此格式输入【KDCX:运单号】\n2.<a href='http://xieqilin.x7.fjjsp01.com/weixin/search/index.jsp'>点击此处</a>]]>");
 				buffer.append("</Content>");
 				buffer.append("</xml>");
 				out.print(buffer);

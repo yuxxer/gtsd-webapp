@@ -33,7 +33,19 @@ public class Zoom implements DomainObject {
 	private String name;
 	
 	private String parentId;
+	
+	private String master;//负责人
+	
+	private String telephone;//联系电话
 
+	private String inZoom;//派送范围
+	
+	private String outZoom ;//不派送地区
+	
+	private String cityId;//所属城市
+	
+	private String provinceId;//所属省份
+	
 	private String description;
 	@Id
 	@Column
@@ -43,6 +55,22 @@ public class Zoom implements DomainObject {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	@Column
+	public String getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getProvinceId() {
+		return provinceId;
+	}
+
+	public void setProvinceId(String provinceId) {
+		this.provinceId = provinceId;
 	}
 
 	@Column
@@ -70,6 +98,38 @@ public class Zoom implements DomainObject {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	@Column
+	public String getMaster() {
+		return master;
+	}
+
+	public void setMaster(String master) {
+		this.master = master;
+	}
+	@Column
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+	@Column(length=240)
+	public String getInZoom() {
+		return inZoom;
+	}
+
+	public void setInZoom(String inZoom) {
+		this.inZoom = inZoom;
+	}
+	@Column(length=240)
+	public String getOutZoom() {
+		return outZoom;
+	}
+
+	public void setOutZoom(String outZoom) {
+		this.outZoom = outZoom;
 	}
 
 }

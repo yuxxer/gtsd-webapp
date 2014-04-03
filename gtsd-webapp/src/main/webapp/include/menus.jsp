@@ -28,6 +28,12 @@ if(StringUtils.isNotBlank(active)){
     <!-- Left navigation -->
     <ul id="menu" class="nav">
         <li class="dash"><a href="<%=request.getContextPath() %>/admin/index.jsp?active=index" title="" <%=active.equals("index")?"class=\"active\"":"" %>><span>首页</span></a></li>
-        <li class="widgets"><a href="<%=request.getContextPath() %>/admin/zoom/list.jsp?active=zoom" title="" <%=active.equals("zoom")?"class=\"active\"":"" %>><span>派送范围</span></a></li>
+        <li class="widgets"><a href="#" title="" class="exp inactive"><span>派送范围</span><strong>3</strong></a>
+        	<ul class="sub">
+                 <li  <%=active.equals("province")?"class=\"this\"":"" %>><a href="<%=request.getContextPath() %>/admin/province/list.jsp?active=province" title="">省份/直辖市</a></li>
+                 <li  <%=active.equals("city")?"class=\"this\"":"" %>><a href="<%=request.getContextPath() %>/admin/city/list.jsp?active=city" title="">市/地区</a></li>
+                 <li  <%=active.equals("zoom")?"class=\"this\"":"" %>><a href="<%=request.getContextPath() %>/admin/zoom/list.jsp?active=zoom" title="" >派送网点</a></li>
+             </ul>
+        </li>
     </ul>
 </div>
