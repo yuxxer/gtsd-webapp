@@ -1,3 +1,5 @@
+<%@page import="com.yuxxer.gtsd.domain.City"%>
+<%@page import="com.yuxxer.gtsd.manager.CityManager"%>
 <%@page import="com.yuxxer.gtsd.domain.Province"%>
 <%@page import="com.yuxxer.gtsd.manager.ProvinceManager"%>
 <%@page import="com.yuxxer.gtsd.domain.Zoom"%>
@@ -14,6 +16,7 @@
 <%
 String entityId=request.getParameter("entityId");
 ProvinceManager provinceManager=helper.getBean(ProvinceManager.class);
+CityManager cityManager=helper.getBean(CityManager.class);
 ZoomManager manager=helper.getBean(ZoomManager.class);
 String action = "create";
 Zoom zoom=null;
@@ -71,6 +74,14 @@ if (StringUtils.isNotBlank(entityId)) {
 						<div class="formRow">
 							<label>从属省份/直辖市:<span class="req">*</span></label>
 							<div class="formRight">
+							<%if("update".equals(action)){ 
+								if(StringUtils.isNotBlank(zoom.getProvinceId())){
+									Province p=provinceManager.getProvince(zoom.getProvinceId());
+									out.print(p!=null?"<span class=\"formNote\">"+p.getName()+"</span>":"");
+								}
+							}else{ %>
+								<div class="selector">
+								<span>--请选择省/直辖市--</span>
 	                            <select name="provinceId" id="provinceId" class="validate[required]" onchange="LoadCity();">
 	                                <option value="">--请选择省/直辖市--</option>
 	                            <%List<Province> provinces=provinceManager.getAllProvinces();
@@ -78,7 +89,9 @@ if (StringUtils.isNotBlank(entityId)) {
 	                            %>
 	                                <option value="<%=province.getId()%>"><%=province.getName() %></option>
 	                            <%} %>
-	                            </select>           
+	                            </select> 
+	                            </div> 
+                            <%} %>         
                         	</div>
 							<div class="clear"></div>
 						</div>
@@ -86,9 +99,19 @@ if (StringUtils.isNotBlank(entityId)) {
 						<div class="formRow">
 							<label>从属市/地区:<span class="req">*</span></label>
 							<div class="formRight">
+							<%if("update".equals(action)){ 
+								if(StringUtils.isNotBlank(zoom.getCityId())){
+									City c=cityManager.getCity(zoom.getCityId());
+									out.print(c!=null?"<span class=\"formNote\">"+c.getName()+"</span>":"");
+								}
+							}else{ %>
+								<div class="selector">
+								<span>--省份/直辖市未选择--</span>
 	                            <select name="cityId" id="cityId" class="validate[required]">
 	                                <option value="">--省份/直辖市未选择--</option>
-	                            </select>           
+	                            </select> 
+	                            </div>   
+                            <%} %>       
                         	</div>
 							<div class="clear"></div>
 						</div>
@@ -106,18 +129,31 @@ if (StringUtils.isNotBlank(entityId)) {
 							</div>
 							<div class="clear"></div>
 						</div>
-						
+						<div class="formRow">
+							<label>传真号码:</label>
+							<div class="formRight">
+								<input type="text" name="fax"  id="fax" value="<%=StringUtils.isNotBlank(zoom.getFax())?zoom.getFax():""%>"/>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="formRow">
+							<label>网点地址:</label>
+							<div class="formRight">
+								<input type="text" name="address"  id="address" value="<%=StringUtils.isNotBlank(zoom.getAddress())?zoom.getAddress():"" %>"/>
+							</div>
+							<div class="clear"></div>
+						</div>
 						<div class="formRow">
 							<label>派送范围:</label>
 							<div class="formRight">
-								<textarea id="inZoom" name="inZoom" rows="6" cols=""><%=StringUtils.isNotBlank(zoom.getInZoom())?zoom.getInZoom():"" %></textarea>
+								<textarea id="inZoom" name="inZoom"><%=StringUtils.isNotBlank(zoom.getInZoom())?zoom.getInZoom():"" %></textarea>
 							</div>
 							<div class="clear"></div>
 						</div>
 						<div class="formRow">
 							<label>不派送范围:</label>
 							<div class="formRight">
-								<textarea id="outZoom" name="outZoom" rows="6" cols=""><%=StringUtils.isNotBlank(zoom.getOutZoom())?zoom.getOutZoom():"" %></textarea>
+								<textarea id="outZoom" name="outZoom"><%=StringUtils.isNotBlank(zoom.getOutZoom())?zoom.getOutZoom():"" %></textarea>
 							</div>
 							<div class="clear"></div>
 						</div>
@@ -129,7 +165,6 @@ if (StringUtils.isNotBlank(entityId)) {
 							</div>
 							<div class="clear"></div>
 						</div>
-
 					</div>
 				</fieldset>
 			</form>

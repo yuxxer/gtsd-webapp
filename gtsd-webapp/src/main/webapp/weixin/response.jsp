@@ -106,7 +106,7 @@ if (request.getMethod().equalsIgnoreCase("post")) {
 				buffer.append("<CreateTime>"+new Date().getTime()+"</CreateTime>");
 				buffer.append("<MsgType><![CDATA[text]]></MsgType>");
 				buffer.append("<Content>");
-				buffer.append("<![CDATA[1.请照此格式输入【KDCX:运单号】\n2.<a href='http://xieqilin.x7.fjjsp01.com/weixin/search/index.jsp'>点击此处</a>]]>");
+				buffer.append("<![CDATA[1.请照此格式输入【KDCX:运单号】\n2.<a href='http://www.yuxxer.com/weixin/search/index.jsp'>点击此处</a>]]>");
 				buffer.append("</Content>");
 				buffer.append("</xml>");
 				out.print(buffer);
@@ -123,7 +123,7 @@ if (request.getMethod().equalsIgnoreCase("post")) {
 				buffer.append("<CreateTime>"+new Date().getTime()+"</CreateTime>");
 				buffer.append("<MsgType><![CDATA[text]]></MsgType>");
 				buffer.append("<Content>");
-				buffer.append("<![CDATA[功能未完善，敬请期待。如需帮助可拨打高铁速递客服0592-7790982]]>");
+				buffer.append("<![CDATA[欢迎使用网点查询!\n<a href='http://www.yuxxer.com/weixin/web/province.jsp'>点击此处</a>]]>");
 				buffer.append("</Content>");
 				buffer.append("</xml>");
 				out.print(buffer);

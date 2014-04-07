@@ -71,14 +71,17 @@ if (StringUtils.isNotBlank(entityId)) {
 						<div class="formRow">
 							<label>从属省份/直辖市:<span class="req">*</span></label>
 							<div class="formRight">
+								<div class="selector">
+								<span>--请选择省/直辖市--</span>
 	                            <select name="provinceId" id="provinceId" class="validate[required]">
 	                                <option value="">--请选择省/直辖市--</option>
 	                            <%List<Province> provinces=provinceManager.getAllProvinces();
 	                            for(Province province:provinces){
 	                            %>
-	                                <option value="<%=province.getId()%>"><%=province.getName() %></option>
+	                                <option value="<%=province.getId()%>" <%if(province.getId().equals(city.getProvinceId()))out.print("selected=\"selected\""); %>><%=province.getName() %></option>
 	                            <%} %>
-	                            </select>           
+	                            </select> 
+	                            </div>          
                         	</div>
 							<div class="clear"></div>
 						</div>

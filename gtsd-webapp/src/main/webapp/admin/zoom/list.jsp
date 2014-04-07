@@ -80,7 +80,7 @@ request.setAttribute("__default_paginationsupport__", ps);
 						for(Zoom zoom:ps.getItems()){%>
 						<tr>
 							<td><input type="checkbox" id="titleCheck" name="checkRow" value="<%=zoom.getId() %>" /></td>
-							<td><%=zoom.getName() %></td>
+							<td><a href="detail.jsp?entityId=<%=zoom.getId() %>"><%=zoom.getName() %></a></td>
 							<td><%if(StringUtils.isNotBlank(zoom.getProvinceId())){
 								Province province=provinceManager.getProvince(zoom.getProvinceId());
 								out.print(province!=null?province.getName():"");

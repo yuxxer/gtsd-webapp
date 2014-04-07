@@ -80,5 +80,7 @@ public class ZoomManager {
 			Range range, Sorter sorter) {
 		return zoomDao.findByCondition(condtion, range, sorter);
 	}
-	
+	public List<Zoom> list(ZoomCondition condition) {
+		return zoomDao.findAllByCondition(condition);
+	}
 }

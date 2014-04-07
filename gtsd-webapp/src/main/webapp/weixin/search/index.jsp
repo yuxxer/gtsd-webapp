@@ -23,7 +23,7 @@
 %>
 <body>
 	<div id="content" class="fix">
-		<div style="margin:5px 0 15px 0"> 提示:请输入快递单号,输入的数据中不能包含数字字母之外的非法字符。</div>
+		<div style="margin:5px 0 15px 0;color:red;"> 提示:请输入快递单号,输入的数据中不能包含数字字母之外的非法字符。</div>
 		<form action="#" method="get" class="se-form">
 			<div class="con-wrap">
 				<input type="search" value="<%=StringUtils.isNotBlank(caseNo)?caseNo:"" %>" autocomplete="off" autocorrect="off"

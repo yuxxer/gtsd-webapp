@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+/* CSS Reset */
+
+body ,h1,h2 ,ul,li{margin:0px; padding:0px;}
+body{font:12px/1 Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif;}
+h1,h2{font-weight:normal;font-size:20px}
+ul{list-style:none}
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+body{
+	line-height:160%;
+	margin:0;
+	padding:10px;
+	background:#fff;
+	font-size:14px;
+	font-family:Times New Roman, Times, serif;
+	color:#100;
+}
+h1{
+	margin-bottom:10px;
+	font-weight:normal;
+	font-size:20px;
+	text-align:center;
+	color:#C71F22;
+}
+h2{
+	clear:both;
+	margin:5px 0;
+	padding-left:30px;
+	background:url(bg.png) no-repeat 5px -10px;
+	font-weight:normal;
+	font-size:18px;
+	color:#C71F25;
+}
+.h2_title{
+	padding-left:20px;
+	background:url(bg.png) no-repeat -5px -90px;
+	font-size:20px;
+}
+#content{
+	height:1;
+}
+#content strong{
+	color:#C71F25;
+}
+
+a{
+		color:#06c;
+}
+.ul_list{
+	display:block;
+	clear:both;
+	padding-bottom:10px;
+}
+.ul_list li{
+	float:left;
+	width:30%;
+	height:40px;
+	overflow:hidden;
+	margin:5px 5px;
+}
+.ul_list li a{
+	display:block;
+	height:30px;
+	line-height:30px;
+	padding:0px 10px;
+	background:#fff2ff;
+	border:#ddd 3px solid;
+	text-decoration:none;
+	text-align:center;
+}
+.ul_list li a:hover{
+	background:#FCF2F3;
+	border:#EBB6BA 3px solid;
+	color:#CCCFff;
+	
+}
+
+

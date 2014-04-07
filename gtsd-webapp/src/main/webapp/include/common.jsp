@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="utf-8"%><%@ include file="page.jspf"%>
-<link href="<%=request.getContextPath() %>/css/main.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="<%=request.getContextPath() %>/css/main.css" rel="stylesheet" type="text/css" />
 <script type='text/javascript' src='<%=request.getContextPath()%>/js/plugins/jquery/jquery.min.js'></script>
 <script type='text/javascript' src='<%=request.getContextPath()%>/js/plugins/jquery/jquery-ui.min.js'></script>
 <script type='text/javascript' src='<%=request.getContextPath()%>/js/plugins/jquery/jquery-ui-timepicker-addon.js'></script>
@@ -55,6 +55,24 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/calendar.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/plugins/elfinder.min.js"></script>
 
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/charts/chart.js"></script>
+<%-- <script type="text/javascript" src="<%=request.getContextPath() %>/js/charts/chart.js"></script> --%>
 
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/custom.js"></script>
+<script type="text/javascript">
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+</script>

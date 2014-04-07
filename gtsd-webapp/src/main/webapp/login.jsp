@@ -39,8 +39,6 @@
 							src="images/icons/topnav/mainWebsite.png" alt="" /><span>网站首页</span></a></li>
 					<li><a href="#" title=""><img
 							src="images/icons/topnav/profile.png" alt="" /><span>联系我们</span></a></li>
-					<li><a href="#" title=""><img
-							src="images/icons/topnav/settings.png" alt="" /><span>设置</span></a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
