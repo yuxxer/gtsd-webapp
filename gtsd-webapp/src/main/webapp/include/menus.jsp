@@ -37,5 +37,6 @@ if(StringUtils.isNotBlank(active)){
                  <li  <%=active.equals("zoom")?"class=\"this\"":"" %>><a href="<%=request.getContextPath() %>/admin/zoom/list.jsp?active=zoom" title="" >派送网点</a></li>
              </ul>
         </li>
+        <li class="typo"><a href="<%=request.getContextPath() %>/admin/faq/list.jsp?active=faq" title="" <%=active.equals("faq")?"class=\"active\"":"" %>><span>常见问题</span></a></li>
     </ul>
 </div>

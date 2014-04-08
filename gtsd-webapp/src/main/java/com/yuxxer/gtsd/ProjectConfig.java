@@ -11,6 +11,7 @@ import com.homolo.framework.dao.hibernate.BaseHibernateDaoSupport;
 import com.homolo.framework.events.EventTarget;
 import com.homolo.framework.module.ModuleConfig;
 import com.yuxxer.gtsd.domain.City;
+import com.yuxxer.gtsd.domain.Faq;
 import com.yuxxer.gtsd.domain.Province;
 import com.yuxxer.gtsd.domain.Zoom;
 
@@ -40,5 +41,9 @@ public class ProjectConfig {
 	@Bean(name = PREFIX + "zoomDao")
 	public DomainObjectDao<Zoom> generateZoomDao() {
 		return new BaseHibernateDaoSupport<Zoom>(Zoom.class);
+	}
+	@Bean(name = PREFIX + "faqDao")
+	public DomainObjectDao<Faq> generateFaqDao() {
+		return new BaseHibernateDaoSupport<Faq>(Faq.class);
 	}
 }

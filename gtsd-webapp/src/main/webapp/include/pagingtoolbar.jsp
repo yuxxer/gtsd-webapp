@@ -84,8 +84,8 @@
 
 %><div class="pagination">
 	<ul class="pages">
-<%if(prevable){%><li class="prev"><a href="<%=preURL + (pageNo - 1)%>"><%=MessageUtils.getLocaleMessage("jsp.pagingtoolbar.label.Previous", "Previous")%></a><li><%}%>
+<%if(prevable){%><li class="prev"><a href="<%=preURL + (pageNo - 1)%>"><%=MessageUtils.getLocaleMessage("jsp.pagingtoolbar.label", "Previous")%></a><li><%}%>
 <%=ss%>
-<%if(nextable){%><li class="next"><a href="<%=preURL + (pageNo + 1)%>"><%=MessageUtils.getLocaleMessage("jsp.pagingtoolbar.label.Next", "Next")%></a><li><%}%>
+<%if(nextable){%><li class="next"><a href="<%=preURL + (pageNo + 1)%>"><%=MessageUtils.getLocaleMessage("jsp.pagingtoolbar.label", "Next")%></a><li><%}%>
 	</ul>
 </div>

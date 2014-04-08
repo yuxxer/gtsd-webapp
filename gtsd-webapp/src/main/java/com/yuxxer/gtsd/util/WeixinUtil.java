@@ -26,6 +26,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.belerweb.social.weixin.bean.Article;
+import com.belerweb.social.weixin.bean.Message;
+
 /*
  * 订单查询
  */
@@ -67,6 +70,43 @@ public abstract class WeixinUtil {
 		}
 		buffer.append("<![CDATA["+result+"]]>");
 		buffer.append("</Content>");
+		buffer.append("</xml>");
+		return buffer.toString();
+	}
+	/**
+	 */
+	public static String sendFaqNews(Message message){
+		StringBuffer buffer=new StringBuffer();
+		buffer.append("<xml>");
+		buffer.append("<ToUserName>");
+		buffer.append("<![CDATA["+message.getToUser()+"]]>");
+		buffer.append("</ToUserName>");
+		buffer.append("<FromUserName>");
+		buffer.append("<![CDATA["+message.getFromUser()+"]]>");
+		buffer.append("</FromUserName>");
+		buffer.append("<CreateTime>"+message.getCreateTime()+"</CreateTime>");
+		buffer.append("<MsgType><![CDATA[news]]></MsgType>");
+		
+		buffer.append("<ArticleCount>"+(message.getArticles().size()<=9?message.getArticles().size()+1:10)+"</ArticleCount>");
+		buffer.append("<Articles>");
+
+		buffer.append("<item>");
+		buffer.append("<Title><![CDATA[高铁速递常见问题]]></Title>");
+		buffer.append("<Description><![CDATA[高铁速递常见问题]]></Description>");
+		buffer.append("<PicUrl><![CDATA[http://114.29.224.212/gtsd/images.faq.png]]></PicUrl>");
+		buffer.append("</item>");
+		int count=0;
+		for(Article a:message.getArticles()){
+			if(count<10){
+				buffer.append("<item>");
+				buffer.append("<Title><![CDATA["+a.getTitle()+"]]></Title>");
+				buffer.append("<Description><![CDATA["+a.getDescription()+"]]></Description>");
+				buffer.append("<Url><![CDATA["+a.getUrl()+"]]></Url>");
+				buffer.append("</item>");
+				count ++;
+			}
+		}
+		buffer.append("</Articles>");
 		buffer.append("</xml>");
 		return buffer.toString();
 	}

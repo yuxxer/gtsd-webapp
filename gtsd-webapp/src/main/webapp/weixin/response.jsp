@@ -7,7 +7,10 @@ import="org.dom4j.DocumentHelper"
 import="org.dom4j.Element"
 import="org.dom4j.Document"
 import="java.util.Date"
+import="com.homolo.framework.web.JspHelper"
 import="com.yuxxer.gtsd.util.WeixinUtil"
+import="com.yuxxer.gtsd.service.rest.WeixinService"
+import="com.yuxxer.gtsd.Constants"
 %><%
 String echostr = request.getParameter("echostr");
 if (echostr != null) {
@@ -17,6 +20,8 @@ if (echostr != null) {
 }
 String openId=null;//关注者的openId
 String originalId=null;//公共号的originalId
+JspHelper helper = new JspHelper(pageContext, "utf-8");
+WeixinService weixinService=helper.getBean(WeixinService.class);
 if (request.getMethod().equalsIgnoreCase("post")) {
 	InputStream instreams = request.getInputStream();
 	BufferedReader reader = new BufferedReader(new InputStreamReader(instreams, "utf-8"));
@@ -106,7 +111,7 @@ if (request.getMethod().equalsIgnoreCase("post")) {
 				buffer.append("<CreateTime>"+new Date().getTime()+"</CreateTime>");
 				buffer.append("<MsgType><![CDATA[text]]></MsgType>");
 				buffer.append("<Content>");
-				buffer.append("<![CDATA[1.请照此格式输入【KDCX:运单号】\n2.<a href='http://www.yuxxer.com/weixin/search/index.jsp'>点击此处</a>]]>");
+				buffer.append("<![CDATA[1.请照此格式输入【KDCX:运单号】\n2.<a href='"+Constants.SERVICE_HOST+"/weixin/search/index.jsp'>点击此处</a>]]>");
 				buffer.append("</Content>");
 				buffer.append("</xml>");
 				out.print(buffer);
@@ -123,10 +128,16 @@ if (request.getMethod().equalsIgnoreCase("post")) {
 				buffer.append("<CreateTime>"+new Date().getTime()+"</CreateTime>");
 				buffer.append("<MsgType><![CDATA[text]]></MsgType>");
 				buffer.append("<Content>");
-				buffer.append("<![CDATA[欢迎使用网点查询!\n<a href='http://www.yuxxer.com/weixin/web/province.jsp'>点击此处</a>]]>");
+				buffer.append("<![CDATA[欢迎使用网点查询!\n<a href='"+Constants.SERVICE_HOST+"/weixin/web/province.jsp'>点击此处</a>]]>");
 				buffer.append("</Content>");
 				buffer.append("</xml>");
 				out.print(buffer);
+			}
+			else if(StringUtils.equals(btnkey.getText(), "weixin-btns-faq")){
+				Object obj=weixinService.clickFaq(openId, originalId);
+				if(obj!=null){
+					out.print(obj.toString());
+				}
 			}
 			return;
 		}

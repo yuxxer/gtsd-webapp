@@ -10,4 +10,8 @@ public final class Constants {
 	public static final String ADMINISTRATOR_EMAIL = "master@test.com";
 	public static final String ADMINISTRATORS_GROUPID = "53bd8042e62c45a6a159a229a0d7e5a1";
 
+	
+	
+	public static final String SERVICE_HOST = "http://115.29.224.212/gtsd";
+
 }

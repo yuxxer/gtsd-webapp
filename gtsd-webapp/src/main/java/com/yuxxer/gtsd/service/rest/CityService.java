@@ -17,8 +17,6 @@ import com.yuxxer.gtsd.condition.CityCondition;
 import com.yuxxer.gtsd.domain.City;
 import com.yuxxer.gtsd.manager.CityManager;
 
-import eu.medsea.util.StringUtil;
-
 @RestService
 public class CityService extends BaseDomainObjectServiceSupport<City> {
 

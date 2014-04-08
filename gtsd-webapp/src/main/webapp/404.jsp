@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>404-Error</title>
-<jsp:include page="/include/common.jsp">
+<jsp:include page="/include/common.jsp"/>
 </head>
 
 <body class="nobg errorPage">
