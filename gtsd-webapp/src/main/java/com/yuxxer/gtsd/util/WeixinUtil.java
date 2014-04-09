@@ -93,7 +93,7 @@ public abstract class WeixinUtil {
 		buffer.append("<item>");
 		buffer.append("<Title><![CDATA[高铁速递常见问题]]></Title>");
 		buffer.append("<Description><![CDATA[高铁速递常见问题]]></Description>");
-		buffer.append("<PicUrl><![CDATA[http://114.29.224.212/gtsd/images/faq.png]]></PicUrl>");
+		buffer.append("<PicUrl><![CDATA[http://115.29.224.212/gtsd/images/faq.png]]></PicUrl>");
 		buffer.append("</item>");
 		int count=0;
 		for(Article a:message.getArticles()){
